@@ -251,33 +251,17 @@ button.active-filter {
         /* --- Responsive --- */
        @media (max-width: 900px) {
   main {
-    display: flex;
-    flex-direction: column;
-  }
-
-  h1 {
-    order: 1;
+    grid-template-columns: 1fr;
   }
 
   #sidebar {
-    order: 2;
-    position: static;
+    order: -1; /* move sidebar above main content */
+    position: static; /* optional: remove sticky on mobile */
   }
 
-  #main-content {
-    order: 3;
-  }
-
-  .header-container {
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .nav-menu {
-    gap: 1rem;
-  }
-}
-
+            .header-container { flex-direction: column; gap: 1rem; }
+            .nav-menu { gap: 1rem; }
+        }
 		
     </style>
 </head>
@@ -296,15 +280,14 @@ button.active-filter {
 </header>
 <body>
 <main>
-
-  <h1>Digital Collection</h1>
-
-  <div id="main-content">
+   
+		
+		<div id="main-content">
+    <h1>Digital Collection</h1>
     <div id="research-list">Loading research...</div>
   </div>
 
   <div id="sidebar">
-
     <input type="text" id="search" placeholder="Search by title, author, keyword...">
 	<h3>Filter by Year</h3>
     <div id="year-buttons"></div>
