@@ -340,9 +340,16 @@
 /* =========================
    TABLET RESPONSIVENESS
    ========================= */
+/* Tablet breakpoint */
 @media (min-width: 769px) and (max-width: 1024px) {
+  .body {
+    background: url('Campus-Tablet.png') no-repeat center center fixed;
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+  }
 
-  /* Header */
+  /* Existing tablet adjustments */
   .header-container {
     flex-direction: row;
     padding: 0 2rem;
@@ -360,7 +367,6 @@
     font-size: 0.95rem;
   }
 
-  /* Hero Section */
   .hero-section {
     height: 450px; /* reduce height */
   }
@@ -378,7 +384,6 @@
     font-size: 1rem;
   }
 
-  /* Content Section */
   .content-section {
     padding: 3rem 2rem;
   }
@@ -387,7 +392,6 @@
     font-size: 2rem;
   }
 
-  /* Feature Grid */
   .features-grid {
     grid-template-columns: repeat(2, 1fr); /* 2 cards per row on tablet */
   }
@@ -395,7 +399,6 @@
   .feature-card {
     padding: 1.5rem;
   }
-
 }
   </style>
    <style>@view-transition { navigation: auto; }</style>
@@ -501,5 +504,3 @@ document.addEventListener("DOMContentLoaded", () => {
 
 </body>
 </html>
-
-
