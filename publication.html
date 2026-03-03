@@ -529,143 +529,72 @@ clearBtn.addEventListener("click", () => {
 		const titleLines = doc.splitTextToSize(r.title || "", pageWidth);
 		doc.text(titleLines, 15, y);
 		y += titleLines.length * 7 + 5;
-		
+
+		// Authors
 		doc.setFontSize(12);
-
-const labelX = 15;   // left column (labels)
-const valueX = 45;   // right column (values aligned like authors)
-const lineSpacing = 7;
-
-		/* ---------- AUTHORS ---------- */
-doc.setFont("helvetica", "bold");
-doc.text("Authors:", labelX, y);
-
-doc.setFont("helvetica", "normal");
-let metaY = y;
-
-toArray(r.authors).forEach(name => {
-  const upperName = name.toUpperCase();
-  const lines = doc.splitTextToSize(upperName, pageWidth - 35);
-  doc.text(lines, valueX, metaY);
-  metaY += lines.length * lineSpacing;
-});
-
-y = metaY + 5;
-		/* ---------- ADVISER ---------- */
+		doc.setFont("helvetica", "normal");
+		const authorsArray = toArray(r.authors);
+		const authorsText = authorsArray.length > 1 ? `${authorsArray[0]} et al.` : authorsArray[0] || "";
+		const authorLines = doc.splitTextToSize(`Authors: ${authorsText}`, pageWidth);
+		doc.text(authorLines, 15, y);
+		y += authorLines.length * 7;
+		// Adviser
 if (r.advisers?.length) {
-  doc.setFont("helvetica", "bold");
-  doc.text("Adviser:", labelX, y);
-
-  doc.setFont("helvetica", "normal");
-  metaY = y;
-
-  toArray(r.advisers).forEach(name => {
-    const lines = doc.splitTextToSize(name, pageWidth - 35);
-    doc.text(lines, valueX, metaY);
-    metaY += lines.length * lineSpacing;
-  });
-
-  y = metaY + 5;
+  const adviserLines = doc.splitTextToSize(
+    `Adviser: ${toArray(r.advisers).join(", ")}`,
+    pageWidth
+  );
+  doc.text(adviserLines, 15, y);
+  y += adviserLines.length * 7;
 }
 
 
-/* ---------- COURSE ---------- */
-if (r.course?.length) {
-  doc.setFont("helvetica", "bold");
-  doc.text("Course:", labelX, y);
 
-  doc.setFont("helvetica", "normal");
-  const lines = doc.splitTextToSize(toArray(r.course).join(", "), pageWidth - 35);
-  doc.text(lines, valueX, y);
+		// Course
+		if(r.course?.length){
+		  const courseLines = doc.splitTextToSize(`Course: ${toArray(r.course).join(", ")}`, pageWidth);
+		  doc.text(courseLines, 15, y);
+		  y += courseLines.length * 7;
+		}
 
-  y += lines.length * lineSpacing + 5;
-}
-
-
-/* ---------- SDG ---------- */
 if (r.sdg?.length) {
-  doc.setFont("helvetica", "bold");
-  doc.text("SDG:", labelX, y);
-
-  doc.setFont("helvetica", "normal");
-  const lines = doc.splitTextToSize(toArray(r.sdg).join(", "), pageWidth - 35);
-  doc.text(lines, valueX, y);
-
-  y += lines.length * lineSpacing + 5;
+  const sdgLines = doc.splitTextToSize(
+    `SDG: ${toArray(r.sdg).join(", ")}`,
+    pageWidth
+  );
+  doc.text(sdgLines, 15, y);
+  y += sdgLines.length * 7;
 }
 
 
-/* ---------- DATE ---------- */
-if (r.research_date) {
-  doc.setFont("helvetica", "bold");
-  doc.text("Date:", labelX, y);
 
-  doc.setFont("helvetica", "normal");
-  const lines = doc.splitTextToSize(r.research_date, pageWidth - 35);
-  doc.text(lines, valueX, y);
+		// Date
+		if(r.research_date){
+		  const dateLines = doc.splitTextToSize(`Date: ${r.research_date}`, pageWidth);
+		  doc.text(dateLines, 15, y);
+		  y += dateLines.length * 7;
+		}
 
-  y += lines.length * lineSpacing + 5;
-}
-
-
-/* ---------- KEYWORDS ---------- */
-if (r.keywords?.length) {
-  doc.setFont("helvetica", "bold");
-  doc.text("Keywords:", labelX, y);
-
-  doc.setFont("helvetica", "normal");
-  const lines = doc.splitTextToSize((r.keywords || []).join(", "), pageWidth - 35);
-  doc.text(lines, valueX, y);
-
-  y += lines.length * lineSpacing + 5;
-}
+		// Keywords
+		if(r.keywords?.length){
+		  const keywordsLines = doc.splitTextToSize(`Keywords: ${(r.keywords || []).join(", ")}`, pageWidth);
+		  doc.text(keywordsLines, 15, y);
+		  y += keywordsLines.length * 7 + 5;
+		}
 
 		// Executive Summary
-		if (r.abstract) {
+		if(r.abstract){
 		  doc.setFontSize(14);
 		  doc.setFont("helvetica", "bold");
 		  doc.text("EXECUTIVE SUMMARY", 15, y);
-		  y += 10;
+		  y += 7;
 
 		  doc.setFontSize(12);
 		  doc.setFont("helvetica", "normal");
-
-		  const lines = doc.splitTextToSize(r.abstract, pageWidth);
-
-		  lines.forEach((line, index) => {
-
-			// Add new page if needed
-			if (y > 280) {
-			  doc.addPage();
-			  y = 15;
-			}
-
-			const words = line.split(" ");
-
-			// Do NOT justify last line of paragraph
-			if (index === lines.length - 1 || words.length === 1) {
-			  doc.text(line, 15, y);
-			} else {
-			  let lineWidth = doc.getTextWidth(line);
-			  let spaceWidth = doc.getTextWidth(" ");
-			  let totalSpace = pageWidth - lineWidth;
-
-			  let gapCount = words.length - 1;
-			  let extraSpace = totalSpace / gapCount;
-
-			  let x = 15;
-
-			  words.forEach((word, i) => {
-				doc.text(word, x, y);
-				if (i < gapCount) {
-				  x += doc.getTextWidth(word) + spaceWidth + extraSpace;
-				}
-			  });
-			}
-
-			y += 7;
-		  });
+		  const abstractLines = doc.splitTextToSize(r.abstract, pageWidth);
+		  doc.text(abstractLines, 15, y);
 		}
+
 		doc.save(`${r.title || "research"}.pdf`);
 	  };
 	});
@@ -791,6 +720,4 @@ function renderSDGs(data) {
 	});
 	</script>
 </html>
-
-
 
