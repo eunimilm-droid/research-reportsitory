@@ -1,307 +1,294 @@
-
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About Us – URSM Campus Library</title>
-  <script src="/_sdk/element_sdk.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Us – URSM Campus Library</title>
+<script src="/_sdk/element_sdk.js"></script>
 
-  <style>
-    .myImage { width: 500px; height: auto; max-width: 100%; }
-	.campus { width: 100%; height: auto; display: block; } 
-	:root {
-            --primary-blue: #003366;
-            --secondary-blue: #00509d;
-            --accent-yellow: #ffcc00;
-            --soft-white: #f8f9fa;
-            --text-dark: #212529;
-            --text-gray: #6c757d;
-            --shadow: 0 4px 12px rgba(0,0,0,0.08);
-            --gradient: linear-gradient(135deg, #003366 0%, #00509d 100%);
-        }
+<style>
 
-
-    body {
-	font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-      background-color: var(--soft-white);
-      color: var(--text-dark);
-      line-height: 1.6;
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      
-      background: #ffffff;
-      height: 100%;
-    }
-	
-
-    *, *::before, *::after { box-sizing: border-box; }
-
-    html { height: 100%; scroll-behavior: smooth; }
-
-    /* --- Header & Navigation --- */
-        header {
-            background: #1e3a8a;
-            color: white;
-            padding: 1rem 5%;
-            box-shadow: var(--shadow);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .header-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .nav-menu {
-      display: flex;
-      gap: 2.5rem;
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      align-items: center;
-    }
-
-    .nav-menu li {
-      margin: 0;
-    }
-
-    .nav-menu a {
-      color: #ffffff;
-      text-decoration: none;
-      font-size: 1rem;
-      font-weight: 500;
-      transition: color 0.3s;
-      position: relative;
-      padding-bottom: 0.3rem;
-    }
-
-    .nav-menu a:hover {
-      color: #fbbf24;
-    }
-
-    .nav-menu a::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background: #fbbf24;
-      transition: width 0.3s ease;
-    }
-
-    .nav-menu a:hover::after {
-      width: 100%;
-    }
-    
-	
-
-
-
-
-    /* HERO SECTION */
-    .hero-section {
-      height: 380px;
-      background: #fbbf24; /* yellow hero header */
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #000000; /* black text */
-      text-align: center;
-      padding: 2rem;
-    }
-
-    .hero-section h1 {
-      font-size: 3rem;
-      margin-bottom: 1rem;
-    }
-
-    .hero-section p {
-      font-size: 1.2rem;
-      max-width: 800px;
-      opacity: 0.9;
-    }
-
-    .content-section {
-      max-width: 1300px;
-      margin: 0 auto;
-      padding: 4rem 2rem;
-      color: #000000; /* black text */
-    }
-
-    .content-section h2 {
-      text-align: center;
-      color: #1e3a8a; /* blue detail */
-      font-size: 2.5rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .accent-bar {
-      width: 80px;
-      height: 4px;
-      background: #fbbf24; /* yellow bar */
-      margin: 0 auto 2rem auto;
-      border-radius: 2px;
-    }
-
-    .about-text {
-      max-width: 1000px;
-      margin: 0 auto 3rem auto;
-      font-size: 1.15rem;
-      line-height: 1.8;
-      color: #000000; /* black text */
-      text-align: center;
-    }
-
-
-    .mission-vision-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 2rem;
-      margin-top: 2rem;
-    }
-	
-    .mv-card:hover{
-      transform: translateY(-5px);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
-    }
-    .mv-card {
-      background: #ffffff;
-      padding: 2rem;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-      transition: all 0.3s ease;
-      border-top: 4px solid #fbbf24;
-    }
-
-    .mv-card h3 {
-      color: #1e3a8a;
-      font-size: 1.5rem;
-      margin-bottom: 1rem;
-    }
- 
-    .mv-card p {
-      color: #4b5563;
-      line-height: 1.7;
-    }
-
-    /* FOOTER */
-    footer {
-      background: #fbbf24;
-      color: #333;
-      text-align: center;
-      padding: 2rem;
-      margin-top: 4rem;
-    }
-/* Dropdown Container */
-.dropdown-parent {
-  position: relative;
+:root {
+    --primary-blue: #003366;
+    --secondary-blue: #00509d;
+    --accent-yellow: #ffcc00;
+    --soft-white: #f8f9fa;
+    --text-dark: #212529;
+    --text-gray: #6c757d;
+    --shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
 
-.dropdown-toggle {
-  color: #fff;
-  cursor: pointer;
-  font-size: 1rem;
-  font-weight: 500;
-  padding-bottom: 0.3rem;
-  display: inline-block;
+body{
+font-family:'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+margin:0;
+background:#ffffff;
+color:#212529;
 }
 
-/* Dropdown item hover — updated color */
-.dropdown a:hover {
-  background: #fde047; /* bright warm yellow like your screenshot */
-  color: #1e1e1e;      /* dark text for good contrast */
+*{box-sizing:border-box}
+
+/* HEADER (UNCHANGED) */
+
+header{
+background:#1e3a8a;
+color:white;
+padding:1rem 5%;
+box-shadow:var(--shadow);
+position:sticky;
+top:0;
+z-index:1000;
 }
 
-
-/* Show on hover (desktop only) */
-.dropdown-parent:hover .dropdown {
-  display: block;
+.header-container{
+display:flex;
+justify-content:space-between;
+align-items:center;
+max-width:1400px;
+margin:auto;
 }
 
-    @media (max-width: 900px) {
-  .header-container { 
-    flex-direction: column; 
-    gap: 1rem; 
-  }
+.myImage{width:500px;max-width:100%}
 
-  .nav-menu { 
-    gap: 1rem; 
-  }
-
-
-      .hero-section h1 { font-size: 2rem; }
-      .hero-section p { font-size: 1rem; }
-    }
-/* University Hero Section (Blue Version) */
-.hero-university {
-  height: 380px;
-  background: #1e3a8a; /* blue */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #ffffff; /* white text */
-  text-align: center;
-  padding: 2rem;
+.nav-menu{
+display:flex;
+gap:2.5rem;
+list-style:none;
+margin:0;
+padding:0;
+align-items:center;
 }
 
-.hero-university h1 {
-  font-size: 3rem;
-      margin-bottom: 1rem;
-    }
+.nav-menu a{
+color:white;
+text-decoration:none;
+font-weight:500;
+position:relative;
+}
 
-    .hero-university p {
-      font-size: 1.2rem;
-      max-width: 800px;
-      opacity: 0.9;
-    }
-  </style>
+.nav-menu a:hover{color:#fbbf24}
+
+.nav-menu a::after{
+content:'';
+position:absolute;
+bottom:-4px;
+left:0;
+width:0;
+height:2px;
+background:#fbbf24;
+transition:.3s;
+}
+
+.nav-menu a:hover::after{width:100%}
+
+/* CAMPUS IMAGE */
+
+.campus{
+width:100%;
+height:auto;
+display:block;
+}
+
+/* MAIN CONTAINER */
+
+.page-container{
+max-width:1300px;
+margin:auto;
+padding:40px 25px;
+}
+
+/* HERO CARD LIKE IMAGE */
+
+.hero-section{
+position:relative;
+}
+
+.campus{
+width:100%;
+height:380px;
+object-fit:cover;
+display:block;
+}
+
+.hero-card{
+background:#fbbf24;
+border-radius:18px;
+padding:70px 60px;
+text-align:center;
+
+width:90%;
+max-width:1200px;
+
+position:relative;
+margin:-100px auto 0 auto;
+
+box-shadow:0 15px 35px rgba(0,0,0,0.2);
+}
+
+.hero-card h1{
+font-size:3.2rem;
+margin-bottom:15px;
+font-weight:700;
+}
+
+.hero-card p{
+font-size:1.3rem;
+max-width:750px;
+margin:auto;
+line-height:1.6;
+}
+
+/* SECTION TITLE */
+
+.section-title{
+text-align:center;
+margin-top:60px;
+}
+
+.section-title h2{
+color:#1e3a8a;
+font-size:2.2rem;
+margin-bottom:10px;
+}
+
+.accent-bar{
+width:80px;
+height:4px;
+background:#fbbf24;
+margin:0 auto 25px auto;
+border-radius:5px;
+}
+
+/* ABOUT TEXT */
+
+.about-text{
+text-align:center;
+max-width:900px;
+margin:auto;
+line-height:1.8;
+font-size:1.1rem;
+}
+
+/* CARD GRID */
+
+.card-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,350px));
+gap:25px;
+margin-top:50px;
+justify-content:center;   /* centers the cards horizontally */
+}
+
+/* CARD */
+
+.info-card{
+background:white;
+padding:30px;
+border-radius:14px;
+box-shadow:0 4px 12px rgba(0,0,0,0.08);
+transition:.3s;
+border-top:5px solid #fbbf24;
+}
+
+.info-card:hover{
+transform:translateY(-6px);
+box-shadow:0 10px 20px rgba(0,0,0,0.12);
+}
+
+.info-card h3{
+color:#1e3a8a;
+margin-bottom:10px;
+}
+
+.info-card p{
+color:#555;
+line-height:1.7;
+}
+
+.info-card ul{
+padding-left:18px;
+}
+
+.info-card li{
+margin-bottom:6px;
+}
+
+/* FOOTER */
+
+footer{
+background:#fbbf24;
+text-align:center;
+padding:25px;
+margin-top:60px;
+}
+
+@media(max-width:900px){
+
+.header-container{
+flex-direction:column;
+gap:1rem;
+}
+
+.nav-menu{
+gap:1rem;
+}
+
+.hero-card{
+margin-top:-40px;
+padding:40px 20px;
+}
+
+.hero-card h1{
+font-size:5rem;
+}
+
+}
+
+</style>
 </head>
+
 <body>
 
-  <!-- HEADER (unchanged) -->
-   <header>
-    <div class="header-container">
-      <img src="ursm logo.png" alt="URS Logo" class="myImage">
+<!-- HEADER (UNCHANGED) -->
+<header>
+<div class="header-container">
 
-      <nav>
-            <ul class="nav-menu" id="nav-menu">
-                <li><a href="index.html">Home</a></li>
-				<li><a href="about.html">About</a></li>
-                <li><a href="publication.html">Collection</a></li>
-                <li><a href="inquire.html">Contact</a></li>
-            </ul>
-        </nav>
-    </div>
-  </header>
-	<picture>
-  <source srcset="Campus-Library2.png" media="(max-width: 900px)">
-  <img src="Campus-Library2.png" class="campus" alt="Campus Library">
-</picture>
-<div class="body">
-  </div>
-  <!-- HERO -->
-  <section class="hero-section">
-    <div>
-      <h1>About the URSM</h1>
-      <p>Learn more about our mission, vision, and the services we provide.</p>
-    </div>
-  </section>
+<img src="ursm logo.png" class="myImage">
 
-  <!-- CONTENT -->
-  <section class="content-section">
-    <h2>Who We Are</h2>
-    <div class="accent-bar"></div>
+<nav>
+<ul class="nav-menu">
+<li><a href="index.html">Home</a></li>
+<li><a href="about.html">About</a></li>
+<li><a href="publication.html">Collection</a></li>
+<li><a href="inquire.html">Contact</a></li>
+</ul>
+</nav>
 
-    <p class="about-text">
-    The University of Rizal System (URS) as an organized academic entity composed of separate but interrelated units 
+</div>
+</header>
+
+<!-- CAMPUS IMAGE -->
+<!-- HERO SECTION -->
+<div class="hero-section">
+
+<source srcset="Campus-Library2.png" media="(max-width: 900px)">
+<img src="Campus-Library2.png" class="campus" alt="Campus Library">
+
+<div class="hero-card">
+<h1>About the URSM</h1>
+<p>Learn more about our mission, vision, and the services we provide.</p>
+</div>
+
+</div>
+
+<!-- WHO WE ARE -->
+
+<div class="section-title">
+<h2>Who We Are</h2>
+<div class="accent-bar"></div>
+</div>
+
+<p class="about-text">
+The University of Rizal System (URS) as an organized academic entity composed of separate but interrelated units 
     coordinates and integrates system-wide functions and activities. It has the prime mandate of providing instruction, 
     research, extension and production to the public.
  <br><br>
@@ -315,91 +302,80 @@
     chief executive officer, university leader, and spokesperson. She performs administrative and leadership work 
     and participates in related activities such as instruction, extension, production, and research, overseeing all 
     university operations, including programs and policy directions.
-  </p>
+	</p>
 
+<!-- UNIVERSITY CARDS -->
 
-    <div class="mission-vision-grid">
-      <div class="mv-card">
-        <h3>Vision</h3>
-        <p>
-           The leading University in human resource development, knowledge and technology generation and environmental 
-    stewardship.
-        </p>
-      </div>
-	  <div class="mv-card">
-        <h3>Mission</h3>
-        <p>
-         The University of Rizal System is committed to nurture and produce upright and competent graduates and empowered 
-    community through relevant and sustainable higher professional and technical instruction, research, extension and 
-    production services
-        </p>
-      </div>
+<div class="card-grid">
 
-      <div class="mv-card">
-        <h3>Core Values</h3>
-        <ul>
-    <p>Responsiveness</p>
-     <p>Integrity</p>
-    <p>Service</p>
-   <p>Excellence</p>
-    <p>Social Responsibility</p>
-  </ul>
-      </div>
-    </div>
-	 <h2>Quality Policies</h2>
-	
-    <p class="about-text">
-    The University of Rizal System commits to deliver excellent products and services to ensure total stakeholders' 
-    satisfaction in instruction, research, extension, production and dynamic administrative support and to 
-    continuously improve its Quality Management System processes to satisfy all applicable requirements.
-  </p>
-  
-  </section>
-    <section class="hero-university">
-    <div>
-      <h1>About the URSM Campus Library</h1>
-      <p>Learn more about our mission, vision, and the services we provide.</p>
-    </div>
-  </section>
-  <section class="content-section">
-  <!-- ========================= -->
-<!-- LIBRARY VISION & MISSION -->
-<!-- ========================= -->
+<div class="info-card">
+<h3>Vision</h3>
+<p>
+The leading University in human resource development, knowledge and technology generation and environmental stewardship.
+</p>
+</div>
 
-<h2>Who We Are</h2>
+<div class="info-card">
+<h3>Mission</h3>
+<p>
+URS is committed to nurture and produce upright and competent graduates and empowered community through relevant and sustainable higher professional and technical instruction, research, extension and production services.
+</p>
+</div>
+
+<div class="info-card">
+<h3>Core Values</h3>
+<ul>
+<li>Responsiveness</li>
+<li>Integrity</li>
+<li>Service</li>
+<li>Excellence</li>
+<li>Social Responsibility</li>
+</ul>
+</div>
+
+<div class="info-card">
+<h3>Quality Policy</h3>
+<p>
+The University commits to deliver excellent services and continuously improve its Quality Management System to ensure total stakeholder satisfaction.
+</p>
+</div>
+
+</div>
+
+<!-- LIBRARY SECTION -->
+
+<div class="section-title">
+<h2>URSM Campus Library</h2>
 <div class="accent-bar"></div>
+</div>
 
 <p class="about-text">
-The URSM Campus Library serves as the academic knowledge hub of the University, supporting
-instruction, research, and extension through accessible, innovative, and student-centered
-library services.
+The URSM Campus Library serves as the academic knowledge hub of the University, supporting instruction, research, and extension through accessible and student-centered services.
 </p>
 
-<div class="mission-vision-grid">
+<div class="card-grid">
 
-  <div class="mv-card">
-    <h3>Library Vision</h3>
-    <p>
-      A Technological Resource Center possessing up-to-date and quality information sources that caters to the development for a lifelong learning in the academic and technical activities of the University.
-    </p>
-  </div>
+<div class="info-card">
+<h3>Library Vision</h3>
+<p>
+A technological resource center possessing up-to-date and quality information sources that support lifelong learning in academic and technical activities.
+</p>
+</div>
 
-  <div class="mv-card">
-    <h3>Library Mission</h3>
-    <p>
-      The Library promotes and maintains quality service which supports the University's philosophy and objectives as well as the instructional, research and extension programs through an organized, relevant, effective and efficient delivery of information in the pursuit of quality collection, facilties and services to attain global acceptance and recognition.
-    </p>
-  </div>
-  </div>
-</section>
-  
-  
+<div class="info-card">
+<h3>Library Mission</h3>
+<p>
+The library promotes and maintains quality service that supports the University's philosophy and programs through organized and efficient delivery of information.
+</p>
+</div>
 
-  
+</div>
 
-  <!-- FOOTER (unchanged) -->
-  <footer>
-    <p>© 2025 <span class="footer-accent">University of Rizal System Morong Campus Library</span>. All rights reserved.</p>
-  </footer>
+</div>
+
+<footer>
+<p>© 2025 University of Rizal System Morong Campus Library. All rights reserved.</p>
+</footer>
+
 </body>
 </html>
