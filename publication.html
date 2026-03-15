@@ -937,17 +937,24 @@ document.querySelectorAll(".download-pdf").forEach((btn, i) => {
 
         const lines = doc.splitTextToSize(r.abstract, contentWidth);
 
-        lines.forEach(line => {
+lines.forEach((line, idx) => {
 
-          if (y > pageHeight - 15) {
-            doc.addPage();
-            addHeader();
-            y = headerHeight + 15;
-          }
+  if (y > pageHeight - 15) {
+    doc.addPage();
+    addHeader();
+    y = headerHeight + 15;
+  }
 
-          doc.text(line, marginLeft, y);
-          y += 7;
-        });
+  // Justify all lines except the last line
+  if (idx < lines.length - 1) {
+    doc.text(line, marginLeft, y, { maxWidth: contentWidth, align: 'justify' });
+  } else {
+    // Last line should be left-aligned
+    doc.text(line, marginLeft, y, { maxWidth: contentWidth, align: 'left' });
+  }
+
+  y += 7;
+});
       }
 
       doc.save(`${r.title || "research"}.pdf`);
@@ -1078,7 +1085,6 @@ function renderSDGs(data) {
 	});
 	</script>
 </html>
-
 
 
 
