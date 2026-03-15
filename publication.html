@@ -672,43 +672,6 @@ clearBtn.addEventListener("click", () => {
   applyFilters();
 });
 
-/* ---------- HELPER: JUSTIFIED TEXT ---------- */
-function drawJustifiedText(doc, text, x, y, maxWidth, lineHeight) {
-  const words = text.split(" ");
-  let line = "";
-  let lines = [];
-
-  words.forEach(word => {
-    const testLine = line + word + " ";
-    const testWidth = doc.getTextWidth(testLine);
-    if (testWidth > maxWidth && line !== "") {
-      lines.push(line.trim());
-      line = word + " ";
-    } else {
-      line = testLine;
-    }
-  });
-
-  if (line) lines.push(line.trim());
-
-  lines.forEach(line => {
-    const wordsInLine = line.split(" ");
-    if (wordsInLine.length === 1) {
-      doc.text(line, x, y);
-    } else {
-      let lineWidth = doc.getTextWidth(line);
-      let gap = (maxWidth - lineWidth) / (wordsInLine.length - 1);
-      let cursorX = x;
-      wordsInLine.forEach((w, i) => {
-        doc.text(w, cursorX, y);
-        if (i < wordsInLine.length - 1) cursorX += doc.getTextWidth(w + " ") + gap;
-      });
-    }
-    y += lineHeight;
-  });
-
-  return y; // return new Y position after drawing
-}
 
 	/* ---------- HELPERS ---------- */
 	const toArray = v =>
@@ -971,24 +934,30 @@ if (r.keywords?.length) {
   y += 5; // extra space after keywords
 }
       /* ---------- EXECUTIVE SUMMARY ---------- */
-if (r.abstract) {
+      if (r.abstract) {
 
-  doc.setFontSize(14);
-  doc.setFont("helvetica", "bold");
-  doc.text("EXECUTIVE SUMMARY", marginLeft, y);
-  y += 10;
+        doc.setFontSize(14);
+        doc.setFont("helvetica", "bold");
+        doc.text("EXECUTIVE SUMMARY", marginLeft, y);
+        y += 10;
 
-  doc.setFontSize(12);
-  doc.setFont("helvetica", "normal");
+        doc.setFontSize(12);
+        doc.setFont("helvetica", "normal");
 
-  const lines = doc.splitTextToSize(r.abstract, contentWidth);
+        const lines = doc.splitTextToSize(r.abstract, contentWidth);
 
-  doc.text(lines, marginLeft, y, {
-    maxWidth: contentWidth,
-    align: "justify"
-  });
+        lines.forEach(line => {
 
-}
+          if (y > pageHeight - 15) {
+            doc.addPage();
+            addHeader();
+            y = headerHeight + 15;
+          }
+
+          doc.text(line, marginLeft, y);
+          y += 7;
+        });
+      }
 
       doc.save(`${r.title || "research"}.pdf`);
 
