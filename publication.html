@@ -925,37 +925,61 @@ document.querySelectorAll(".download-pdf").forEach((btn, i) => {
       }
 
       /* ---------- EXECUTIVE SUMMARY ---------- */
-      if (r.abstract) {
+      /* ---------- EXECUTIVE SUMMARY ---------- */
+if (r.abstract) {
+  doc.setFontSize(14);
+  doc.setFont("helvetica", "bold");
+  doc.text("EXECUTIVE SUMMARY", marginLeft, y);
+  y += 10;
 
-        doc.setFontSize(14);
-        doc.setFont("helvetica", "bold");
-        doc.text("EXECUTIVE SUMMARY", marginLeft, y);
-        y += 10;
+  doc.setFontSize(12);
+  doc.setFont("helvetica", "normal");
 
-        doc.setFontSize(12);
-        doc.setFont("helvetica", "normal");
+  const lines = doc.splitTextToSize(r.abstract, contentWidth);
 
-        const lines = doc.splitTextToSize(r.abstract, contentWidth);
+  const justifyLine = (text, x, y, width) => {
+    const words = text.trim().split(/\s+/);
 
-lines.forEach((line, idx) => {
+    // If only one word, just print normally
+    if (words.length <= 1) {
+      doc.text(text, x, y);
+      return;
+    }
 
-  if (y > pageHeight - 15) {
-    doc.addPage();
-    addHeader();
-    y = headerHeight + 15;
-  }
+    const spaceWidth = doc.getTextWidth(" ");
+    const wordsWidth = words.reduce((sum, word) => sum + doc.getTextWidth(word), 0);
+    const totalSpacing = width - wordsWidth;
+    const gapCount = words.length - 1;
+    const extraSpace = totalSpacing / gapCount;
 
-  // Justify all lines except the last line
-  if (idx < lines.length - 1) {
-    doc.text(line, marginLeft, y, { maxWidth: contentWidth, align: 'justify' });
-  } else {
-    // Last line should be left-aligned
-    doc.text(line, marginLeft, y, { maxWidth: contentWidth, align: 'left' });
-  }
+    let cursorX = x;
 
-  y += 7;
-});
+    words.forEach((word, i) => {
+      doc.text(word, cursorX, y);
+      if (i < gapCount) {
+        cursorX += doc.getTextWidth(word) + extraSpace;
       }
+    });
+  };
+
+  lines.forEach((line, idx) => {
+    if (y > pageHeight - 15) {
+      doc.addPage();
+      addHeader();
+      y = headerHeight + 15;
+    }
+
+    // Justify all lines except the last one
+    if (idx < lines.length - 1) {
+      justifyLine(line, marginLeft, y, contentWidth);
+    } else {
+      // Last line stays left-aligned
+      doc.text(line, marginLeft, y);
+    }
+
+    y += 7;
+  });
+}
 
       doc.save(`${r.title || "research"}.pdf`);
 
