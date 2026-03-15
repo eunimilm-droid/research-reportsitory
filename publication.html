@@ -924,41 +924,31 @@ document.querySelectorAll(".download-pdf").forEach((btn, i) => {
         y += lines.length * lineSpacing + 5;
       }
 
-      /* EXECUTIVE SUMMARY */
-if (r.abstract) {
-    doc.setFontSize(14);
-    doc.setFont("helvetica", "bold");
-    doc.text("EXECUTIVE SUMMARY", marginLeft, y);
-    y += 10;
+      /* ---------- EXECUTIVE SUMMARY ---------- */
+      if (r.abstract) {
 
-    doc.setFontSize(12);
-    doc.setFont("helvetica", "normal");
+        doc.setFontSize(14);
+        doc.setFont("helvetica", "bold");
+        doc.text("EXECUTIVE SUMMARY", marginLeft, y);
+        y += 10;
 
-    const pageMargin = marginLeft;
-    const textWidth = contentWidth;
+        doc.setFontSize(12);
+        doc.setFont("helvetica", "normal");
 
-    // Use the full text, no splitting into lines
-    const abstractText = r.abstract;
+        const lines = doc.splitTextToSize(r.abstract, contentWidth);
 
-    // Add text with justification
-    const splitText = doc.splitTextToSize(abstractText, textWidth); // optional, but preserves wrapping
-    splitText.forEach((line, index) => {
-        if (y > pageHeight - 15) {
+        lines.forEach(line => {
+
+          if (y > pageHeight - 15) {
             doc.addPage();
             addHeader();
             y = headerHeight + 15;
-        }
+          }
 
-        // justify all lines except last
-        if (index < splitText.length - 1) {
-            doc.text(line, pageMargin, y, { maxWidth: textWidth, align: 'justify' });
-        } else {
-            doc.text(line, pageMargin, y, { maxWidth: textWidth, align: 'left' });
-        }
-
-        y += 7;
-    });
-}
+          doc.text(line, marginLeft, y);
+          y += 7;
+        });
+      }
 
       doc.save(`${r.title || "research"}.pdf`);
 
