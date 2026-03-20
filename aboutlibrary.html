@@ -203,32 +203,67 @@
     section { padding: 2rem 0; }
 
     .floating-strip {
-      width: min(var(--max), calc(100% - 2rem));
-      margin: auto;
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1rem;
-    }
+  width: min(var(--max), calc(100% - 2rem));
+  margin: -60px auto 2rem; /* lift it slightly into hero */
+  display: grid;
+   grid-template-columns: repeat(4, 1fr);
+  gap: 1.2rem;
+}
 
-    .strip-card {
-      background: var(--white);
-      border-radius: 22px;
-      padding: 1.2rem;
-      box-shadow: var(--shadow-soft);
-      border: 1px solid rgba(15,47,107,0.06);
-    }
+.strip-card {
+  position: relative;
+  padding: 1.6rem 1.4rem;
+  border-radius: 22px;
+  background: linear-gradient(135deg, #ffffff, #f8fbff);
+  box-shadow: 0 12px 30px rgba(15, 47, 107, 0.12);
+  border: 1px solid rgba(15,47,107,0.06);
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
 
-    .strip-card strong {
-      display: block;
-      color: var(--navy);
-      margin-bottom: 0.4rem;
-    }
+/* top accent line */
+.strip-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 5px;
+  width: 100%;
+  background: linear-gradient(90deg, var(--royal), var(--gold));
+}
 
-    .strip-card p {
-      color: var(--muted);
-      line-height: 1.7;
-      margin: 0;
-    }
+/* hover effect */
+.strip-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(15, 47, 107, 0.18);
+}
+
+/* title */
+.strip-card strong {
+  display: block;
+  font-size: 1.2rem;
+  color: var(--navy);
+  margin-bottom: 0.5rem;
+}
+
+/* description */
+.strip-card p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+/* optional icon circle */
+.strip-card::after {
+  content: "★";
+  position: absolute;
+  right: 14px;
+  bottom: 12px;
+  font-size: 1.6rem;
+  color: rgba(29, 78, 216, 0.12);
+}
+
+
 
     .section-head {
       text-align: center;
@@ -586,7 +621,7 @@
       <div class="container">
         <div class="section-head">
           <span class="eyebrow">Library Principles</span>
-          <h2>Mission and Core Values</h2>
+          <h2>Vision, Mission and Core Values</h2>
         </div>
 
         <div class="card-grid">
@@ -606,11 +641,11 @@
 		  <article class="info-card">
             <h3>Library Core Values</h3>
             <ul>
-              <li>Serve the academic community of URS promptly, efficiently and with outmost courtesy.</li>
-              <li>Extend qaulity service to everybody at all times and at all means.</li>
-              <li>Render extra effort in acquiring various learning resource materials.</li>
-              <li>Value books and other library materials as sources of knowledge; and</li>
-              <li>Empower education through research and academic outputs</li>
+              <li><strong>S</strong>erve the academic community of URS promptly, efficiently and with outmost courtesy.</li>
+              <li><strong>E</strong>xtend qaulity service to everybody at all times and at all means.</li>
+              <li><strong>R</strong>ender extra effort in acquiring various learning resource materials.</li>
+              <li><strong>V</strong>alue books and other library materials as sources of knowledge; and</li>
+              <li><strong>E</strong>mpower education through research and academic outputs</li>
             </ul>
           </article>
         </div>
