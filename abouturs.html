@@ -299,33 +299,65 @@
     section { padding: 2rem 0; }
 
     .floating-strip {
-      width: min(var(--max), calc(100% - 2rem));
-      margin: auto;
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1rem;
-    }
+  width: min(var(--max), calc(100% - 2rem));
+  margin: -60px auto 2rem; /* lift it slightly into hero */
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.2rem;
+}
 
-    .strip-card {
-      background: var(--white);
-      border-radius: 22px;
-      padding: 1.2rem;
-      box-shadow: var(--shadow-soft);
-      border: 1px solid rgba(15,47,107,0.06);
-    }
+.strip-card {
+  position: relative;
+  padding: 1.6rem 1.4rem;
+  border-radius: 22px;
+  background: linear-gradient(135deg, #ffffff, #f8fbff);
+  box-shadow: 0 12px 30px rgba(15, 47, 107, 0.12);
+  border: 1px solid rgba(15,47,107,0.06);
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
 
-    .strip-card span {
-      display: inline-block;
-      width: 42px;
-      height: 42px;
-      border-radius: 14px;
-      background: #eff6ff;
-      color: var(--royal);
-      font-weight: 800;
-      display: grid;
-      place-items: center;
-      margin-bottom: 0.8rem;
-    }
+/* top accent line */
+.strip-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 5px;
+  width: 100%;
+  background: linear-gradient(90deg, var(--royal), var(--gold));
+}
+
+/* hover effect */
+.strip-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(15, 47, 107, 0.18);
+}
+
+/* title */
+.strip-card strong {
+  display: block;
+  font-size: 1.2rem;
+  color: var(--navy);
+  margin-bottom: 0.5rem;
+}
+
+/* description */
+.strip-card p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+/* optional icon circle */
+.strip-card::after {
+  content: "★";
+  position: absolute;
+  right: 14px;
+  bottom: 12px;
+  font-size: 1.6rem;
+  color: rgba(29, 78, 216, 0.12);
+}
 
     .section-head {
       text-align: center;
@@ -530,7 +562,80 @@ margin-top:60px;
 }
 
 
+/* LEADERS GRID */
+.leaders-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.2rem;
+}
 
+/* CARD */
+.leader-card {
+  overflow: hidden;
+  border-radius: 24px;
+  background: var(--white);
+  border: 1px solid rgba(15, 47, 107, 0.08);
+  transition: 0.3s ease;
+  box-shadow: var(--shadow-soft);
+}
+
+.leader-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(15, 47, 107, 0.16);
+}
+
+/* IMAGE */
+.leader-image {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  padding: 14px;
+  background: linear-gradient(135deg, #f8fbff, #eef4ff);
+  border-bottom: 1px solid rgba(15, 47, 107, 0.06);
+  border-radius: 26px;
+}
+
+/* IMAGE STYLE (same as researcher) */
+.leader-card img {
+  border: 4px solid #ffffff;
+  outline: 1px solid rgba(29, 78, 216, 0.12);
+  box-shadow: 0 10px 24px rgba(15, 47, 107, 0.12);
+}
+
+/* CONTENT */
+.leader-content {
+  padding: 1.3rem;
+}
+
+.leader-content small {
+  display: inline-block;
+  margin-bottom: 0.6rem;
+  color: var(--royal);
+  font-weight: 700;
+}
+
+.leader-content h3 {
+  margin: 0 0 0.6rem;
+  color: var(--navy);
+  font-size: 1.1rem;
+}
+
+.leader-content p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.7;
+}
+@media (max-width: 1100px) {
+  .leaders-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 860px) {
+  .leaders-grid {
+    grid-template-columns: 1fr;
+  }
+}
 
 /* Tablet breakpoint */
 @media (max-width: 900px) {
@@ -736,7 +841,7 @@ university operations, including programs and policy directions.
         <div class="card-grid">
           <article class="info-card">
             <h3>Vision</h3>
-            <p>The Leading University in human resource development, knowledge and technology generation and environmental stewardship.</p>
+            <p>The leading University in human resource development, knowledge and technology generation and environmental stewardship.</p>
           </article>
           <article class="info-card">
             <h3>Mission</h3>
@@ -744,18 +849,18 @@ university operations, including programs and policy directions.
           </article>
           <article class="info-card">
             <h3>Quality Policy</h3>
-            <p>The University of Rizal System commits to deliver excellent products and services to ensure total stakeholders' satisfaction in instruction, research, extension, production and dynamic administrative support, while continuously improving its Quality Management System processes.</p>
+            <p>The University of Rizal System commits to deliver excellent products and services to ensure total stakeholders' satisfaction in instruction, research, extension, production and dynamic administrative support and to continuously improving its Quality Management System processes.</p>
           </article>
 
           <article class="timeline-card">
             <h3>Core Values</h3>
             <p>These values help shape the university culture and guide decision-making in every area of service.</p>
             <ul>
-              <li>Responsiveness</li>
-              <li>Integrity</li>
-              <li>Service</li>
-              <li>Excellence</li>
-              <li>Social Responsibility</li>
+              <li><strong>R</strong>esponsiveness</li>
+              <li><strong>I</strong>ntegrity</li>
+              <li><strong>S</strong>ervice</li>
+              <li><strong>E</strong>xcellence</li>
+              <li><strong>S</strong>ocial Responsibility</li>
             </ul>
           </article>
        
@@ -773,27 +878,42 @@ university operations, including programs and policy directions.
         </div>
 
         <div class="leaders-grid">
-          <article class="leader-card">
-            <small>University President</small>
-            <h3>Dr. Nancy Talavera Pascual</h3>
-            <p>Provides overall leadership, policy direction, and representation for the university system.</p>
-          </article>
-          <article class="leader-card">
-            <small>Administration and Finance</small>
-            <h3>Dr. Marvin P. Amoin</h3>
-            <p>Supports institutional efficiency, operations, and responsible management of university resources.</p>
-          </article>
-          <article class="leader-card">
-            <small>Academic Affairs</small>
-            <h3>Dr. Allan E. Conde</h3>
-            <p>Helps ensure the quality, relevance, and continuous improvement of academic programs.</p>
-          </article>
-          <article class="leader-card">
-            <small>Research, Extension, and Production</small>
-            <h3>Dr. Marites M. Rio</h3>
-            <p>Leads initiatives that strengthen research outputs, public engagement, and development-oriented services.</p>
-          </article>
-        </div>
+  <article class="leader-card">
+    <img src="president1.jpg" alt="University President" class="leader-image">
+    <div class="leader-content">
+      <small>University President</small>
+      <h3>Dr. Nancy Talavera Pascual</h3>
+      <p>Provides overall leadership, policy direction, and representation for the university system.</p>
+    </div>
+  </article>
+
+  <article class="leader-card">
+    <img src="admin.png" alt="Administration and Finance" class="leader-image">
+    <div class="leader-content">
+      <small>Administration and Finance</small>
+      <h3>Dr. Marvin P. Amoin</h3>
+      <p>Supports institutional efficiency, operations, and responsible management of university resources.</p>
+    </div>
+  </article>
+
+  <article class="leader-card">
+    <img src="academic.jpg" alt="Academic Affairs" class="leader-image">
+    <div class="leader-content">
+      <small>Academic Affairs</small>
+      <h3>Dr. Allan E. Conde</h3>
+      <p>Helps ensure the quality, relevance, and continuous improvement of academic programs.</p>
+    </div>
+  </article>
+
+  <article class="leader-card">
+    <img src="research.jpg" alt="Research Extension" class="leader-image">
+    <div class="leader-content">
+      <small>Research, Extension, and Production</small>
+      <h3>Dr. Marites M. Rio</h3>
+      <p>Leads initiatives that strengthen research outputs, public engagement, and development-oriented services.</p>
+    </div>
+  </article>
+</div>
       </div>
     </section>
   </main>
