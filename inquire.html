@@ -1,18 +1,18 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact Us – URSM Campus Library</title>
-  <script src="/_sdk/element_sdk.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Us – URSM Campus Library</title>
 
-  <style>
-	:root {
+<style>
+:root {
             --primary-blue: #003366;
             --secondary-blue: #00509d;
             --accent-yellow: #ffcc00;
             --soft-white: #f8f9fa;
             --text-dark: #212529;
+			--gold: #fbbf24;
             --text-gray: #6c757d;
             --shadow: 0 4px 12px rgba(0,0,0,0.08);
             --gradient: linear-gradient(135deg, #003366 0%, #00509d 100%);
@@ -106,7 +106,8 @@
       left: 0;
       bottom: -4px;
       width: 0;
-      height: 2px;
+      height: 2.5px;
+  border-radius: 2px;
       background: var(--gold);
       transition: 0.25s ease;
     }
@@ -169,31 +170,189 @@
 .dropdown-menu a::after{
   display:none;
 }
-    
-    /* HERO SECTION */
-    .hero-section {
-      height: 380px;
-      background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #ffffff;
-      text-align: center;
-      padding: 2rem;
-    }
 
-    .hero-section h1 {
-      font-size: 3rem;
-      margin-bottom: 1rem;
-    }
+    /* Footer */
+    footer {
+  background: #1e3a8a;
+  color: #ffffff;
+  text-align: center;
+  padding: 2.5rem 2rem;
+  margin-top: 0; /* remove the gap */
+}
 
-    .hero-section p {
-      font-size: 1.2rem;
-      max-width: 800px;
+    footer p {
+      margin: 0;
       opacity: 0.9;
     }
 
-    .content-section {
+    .footer-accent {
+      color: #fbbf24;
+      font-weight: bold;
+    }
+
+
+/* Tablet breakpoint */
+@media (max-width: 900px) {
+  .header-container { 
+    flex-direction: column; 
+    gap: 1rem; 
+  }
+
+  .nav-menu { 
+    gap: 1rem; 
+  }
+}
+/* DROPDOWN MENU */
+.dropdown{
+  position:relative;
+}
+
+.dropdown-menu{
+  display:none;
+  position:absolute;
+  top:100%;
+  left:0;
+  background:white;
+  min-width:200px;
+  list-style:none;
+  padding:8px 0;
+  border-radius:6px;
+  box-shadow:0 6px 15px rgba(0,0,0,0.15);
+  z-index:1000;
+}
+
+.dropdown-menu li{
+  width:100%;
+}
+
+.dropdown-menu a{
+  display:block;
+  padding:10px 16px;
+  color:#1e3a8a;
+  text-decoration:none;
+  font-size:0.95rem;
+}
+
+.dropdown-menu a:hover{
+  background:#f3f4f6;
+  color:#fbbf24;
+}
+
+/* show dropdown on hover (desktop) */
+.dropdown:hover .dropdown-menu{
+  display:block;
+}
+
+/* remove underline animation inside dropdown */
+.dropdown-menu a::after{
+  display:none;
+}
+
+
+/* ===== HERO ===== */
+.hero-section{
+  height:460px;
+  background: linear-gradient(135deg,#1e3a8a,#2563eb);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  color:white;
+  position:relative;
+  overflow:hidden;
+}
+
+.hero-section::before{
+  content:"";
+  position:absolute;
+  width:600px;
+  height:600px;
+  background:rgba(255,255,255,0.08);
+  border-radius:50%;
+  top:-150px;
+  left:-150px;
+}
+
+.hero-section::after{
+  content:"";
+  position:absolute;
+  width:500px;
+  height:500px;
+  background:rgba(255,255,255,0.05);
+  border-radius:50%;
+  bottom:-150px;
+  right:-150px;
+}
+
+.hero-content{
+  z-index:1;
+}
+
+.hero-section h1{
+  font-size:3.2rem;
+  margin-bottom:1rem;
+}
+
+.hero-section p{
+  font-size:1.2rem;
+  opacity:0.9;
+}
+
+/* ===== SECTION ===== */
+.content-section{
+  max-width:1200px;
+  margin:auto;
+  padding:4rem 2rem;
+}
+
+.section-title{
+  text-align:center;
+  font-size:2.3rem;
+  color:#1e3a8a;
+}
+
+.accent-bar{
+  width:80px;
+  height:5px;
+  background:#fbbf24;
+  margin:12px auto 2.5rem;
+  border-radius:5px;
+}
+
+/* ===== CONTACT CARDS ===== */
+.contact-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:2rem;
+}
+
+.contact-card{
+  background:rgba(255,255,255,0.7);
+  backdrop-filter: blur(10px);
+  border-radius:18px;
+  padding:2rem;
+  text-align:center;
+  box-shadow:0 10px 25px rgba(0,0,0,0.08);
+  transition:0.3s;
+  border:1px solid rgba(255,255,255,0.3);
+}
+
+.contact-card:hover{
+  transform:translateY(-8px) scale(1.02);
+}
+
+.contact-icon{
+  font-size:2rem;
+  margin-bottom:10px;
+}
+
+.contact-card h3{
+  color:#1e3a8a;
+}
+
+
+
+.content-section {
       max-width: 1300px;
       margin: 0 auto;
       padding: 4rem 2rem;
@@ -284,81 +443,36 @@
       background: #334bb7;
     }
 
-    /* Footer */
-    footer {
-      background: #1e3a8a;
-      color: #ffffff;
-      text-align: center;
-      padding: 2.5rem 2rem;
-      margin-top: 4rem;
-    }
-
-    footer p {
-      margin: 0;
-      opacity: 0.9;
-    }
-
-    .footer-accent {
-      color: #fbbf24;
-      font-weight: bold;
-    }
-
-
-/* Tablet breakpoint */
-@media (max-width: 900px) {
-  .header-container { 
-    flex-direction: column; 
-    gap: 1rem; 
-  }
-
-  .nav-menu { 
-    gap: 1rem; 
-  }
-}
-/* DROPDOWN MENU */
-.dropdown{
+/* ===== CTA ===== */
+.cta-section{
+  margin-top:4rem;
+  background:linear-gradient(135deg,#2563eb,#1e40af);
+  padding:3rem 2rem;
+  text-align:center;
+  color:white;
   position:relative;
+  overflow:hidden;
 }
 
-.dropdown-menu{
-  display:none;
-  position:absolute;
-  top:100%;
-  left:0;
-  background:white;
-  min-width:200px;
-  list-style:none;
-  padding:8px 0;
-  border-radius:6px;
-  box-shadow:0 6px 15px rgba(0,0,0,0.15);
-  z-index:1000;
+.cta-section h2{
+  font-size:2rem;
 }
 
-.dropdown-menu li{
-  width:100%;
-}
-
-.dropdown-menu a{
-  display:block;
-  padding:10px 16px;
+.cta-btn{
+  display:inline-block;
+  margin-top:1.5rem;
+  padding:1rem 2.2rem;
+  background:#fbbf24;
   color:#1e3a8a;
+  font-weight:bold;
+  border-radius:50px;
   text-decoration:none;
-  font-size:0.95rem;
+  transition:0.3s;
 }
 
-.dropdown-menu a:hover{
-  background:#f3f4f6;
-  color:#fbbf24;
-}
-
-/* show dropdown on hover (desktop) */
-.dropdown:hover .dropdown-menu{
-  display:block;
-}
-
-/* remove underline animation inside dropdown */
-.dropdown-menu a::after{
-  display:none;
+.cta-btn:hover{
+  background:#fde68a;
+  transform:scale(1.07);
 }
 
 /* Styled placeholder */
@@ -385,12 +499,11 @@
   box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15);
 }
 
-  </style>
+</style>
 </head>
 
 <body>
-
-  <!-- HEADER (unchanged) -->
+ <!-- HEADER (unchanged) -->
  <header>
     <div class="container header-container">
       <div class="brand">
@@ -414,39 +527,36 @@
       </nav>
     </div>
   </header>
-
-
-
-  <!-- HERO -->
-  <section class="hero-section">
-    <div>
-      <h1>Contact the URSM Campus Library</h1>
-      <p>We’re here to assist you. Reach out to us for inquiries, services, or library support.</p>
-    </div>
-  </section>
   
-  <section class="content-section">
+<!-- HERO -->
+<section class="hero-section">
+  <div class="hero-content">
+    <h1>Contact URSM Library</h1>
+    <p>Your gateway to knowledge and academic support</p>
+  </div>
+</section>
 
-  <!-- CONTACT INFO CARDS -->
-  <h2>Get in Touch</h2>
+<!-- CONTENT -->
+<section class="content-section">
+
+  <h2 class="section-title">Get in Touch</h2>
   <div class="accent-bar"></div>
 
   <div class="contact-grid">
     <div class="contact-card">
-      <h3>Email Address</h3>
+      <div class="contact-icon"></div>
+      <h3>Email</h3>
       <p>ursmlib@urs.edu.ph</p>
     </div>
 
     <div class="contact-card">
-      <h3>Library Address</h3>
-      <p>
-        Sumulong St. San juan, Morong Rizal
-      </p>
+      <div class="contact-icon"></div>
+      <h3>Location</h3>
+      <p>Sumulong St. San Juan, Morong, Rizal</p>
     </div>
   </div>
 
-  <!-- CONTENT -->
-  <section class="content-section">
+ <section class="content-section">
     <!-- CONTACT FORM -->
     <div class="contact-form">
       <h2 style="text-align:center; color:#1e3a8a;">Send Us a Message</h2>
@@ -466,14 +576,23 @@
     </div>
 
   </section>
-  </section>
-</body>
 
-  <!-- FOOTER -->
+</section>
+<div class="cta-section">
+    <h2>Upload your study now</h2>
+<p>Share your work and help others learn</p>
+
+
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdCTlhzop57tmm6ZuW8yRyE6f4Sogl_qmkOggYbQ8Yjb5QVaw/viewform?usp=dialog"
+       target="_blank"
+       class="cta-btn">
+       Click Here
+    </a>
+  </div>
+      <!-- FOOTER -->
   <footer>
     <p>© 2025 <span class="footer-accent">University of Rizal System Morong Campus Library</span>. All rights reserved.</p>
   </footer>
-
   <!-- EmailJS -->
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 
