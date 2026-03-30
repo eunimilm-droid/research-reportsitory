@@ -250,15 +250,14 @@ footer {
 /* AUTH MODAL BACKGROUND */
 #auth-modal {
   display: flex;
-  position: relative; /* remove fixed */
-  width: 100%;
-  height: 100vh;
-  background: #f3f4f6;
+  flex-direction: column;   /* ⭐ ADD THIS */
   align-items: center;
   justify-content: center;
-    padding: 2rem;
+  width: 100%;
+  flex: 1;
+  background: #f3f4f6;
+  padding: 2rem;
 }
-
 /* LOGIN BOX */
 #auth-box {
   background: #ffffff;
@@ -312,6 +311,17 @@ footer {
   display: none;
 }
 
+
+
+.auth-note{
+  width: 350px;            
+  margin-bottom: 18px;
+  padding: 12px 16px;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  text-align: center;
+  color: #333;
+}
   </style>
    <style>@view-transition { navigation: auto; }</style>
   <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
@@ -326,11 +336,18 @@ footer {
   </div>
 </header>
 
-<body>
-
 <!-- LOGIN -->
 <div id="auth-modal">
+<div class="auth-note">
+  <h3>Ps. This is for Evaluation only</h3>
+  <h4>If you don't want to create an account just use the following:</h4>
+  <p>Student number: m1
+  <br>Email: rayruzzel@gmail.com<br>Password: 123456</p>
+  <h4>If you do want to create an account just know that for now, anyone can register an account if they have a link, so that the evaluators can easily create an account, 
+  but after the evaluation only the registered students in the university can access the system, to ensure the system's security. </h4>
+</div>
   <div id="auth-box">
+  
     <h2 id="auth-title">Sign In</h2>
 
     <input id="display_name" placeholder="Full Name" style="display:none;">
